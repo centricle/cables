@@ -119,11 +119,6 @@ export function getAllCategories(): CableCategory[] {
       name: 'Power',
       slug: 'power',
       description: 'Barrel jacks, IEC, NEMA, and regional power plugs.'
-    },
-    {
-      name: 'Legacy',
-      slug: 'legacy',
-      description: 'Serial, parallel, PS/2, FireWire, and other legacy connectors.'
     }
   ];
 
