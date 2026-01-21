@@ -1,0 +1,99 @@
+{
+  "type": "Barrel Jack",
+  "full_name": "DC Barrel Connector",
+  "standard_body": "EIAJ (some sizes), otherwise de facto",
+  "common_names": ["Barrel jack", "DC jack", "Barrel plug", "Coaxial power connector"],
+  "protocols": {
+    "5.5x2.1mm": {
+      "version": "5.5x2.1mm",
+      "data_rate": "DC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "Typically 12V-24V, up to 5A",
+      "features": ["Most common size", "Center positive (usually)"],
+      "cable_requirements": "5.5mm outer, 2.1mm inner diameter",
+      "max_length": "Varies by voltage/current"
+    },
+    "5.5x2.5mm": {
+      "version": "5.5x2.5mm",
+      "data_rate": "DC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "Typically 12V-24V, up to 5A",
+      "features": ["Slightly larger inner pin", "Common on laptops"],
+      "cable_requirements": "5.5mm outer, 2.5mm inner diameter",
+      "max_length": "Varies by voltage/current"
+    },
+    "3.5x1.35mm": {
+      "version": "3.5x1.35mm",
+      "data_rate": "DC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "Typically 5V, up to 2A",
+      "features": ["Smaller devices", "USB hubs, small electronics"],
+      "cable_requirements": "3.5mm outer, 1.35mm inner diameter",
+      "max_length": "Varies by voltage/current"
+    },
+    "EIAJ-4 (Yellow Tip)": {
+      "version": "EIAJ-4",
+      "data_rate": "DC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "10.5V-13V nominal",
+      "features": ["Standardized voltage range", "Yellow tip indicates EIAJ-4"],
+      "cable_requirements": "4.75mm outer, 1.7mm inner",
+      "max_length": "Varies by voltage/current"
+    }
+  },
+  "connector": {
+    "pins": 2,
+    "width": 5.5,
+    "height": 5.5,
+    "depth": 9.5,
+    "reversible": false,
+    "shape": "cylindrical coaxial",
+    "unit": "mm"
+  },
+  "electrical": {
+    "voltage_max": 48,
+    "current_max": 5,
+    "power_max": 120
+  },
+  "compatibility": {
+    "backwards": [],
+    "forwards": [],
+    "adapters_to": ["USB-C PD (with voltage conversion)", "Other barrel sizes"],
+    "adapters_from": ["USB-C PD (trigger boards)", "AC adapters"]
+  },
+  "common_devices": [
+    "Laptops (older models)",
+    "Routers and modems",
+    "LED strips",
+    "CCTV cameras",
+    "Audio equipment",
+    "Arduino and electronics projects",
+    "External hard drive enclosures",
+    "Monitors",
+    "Network switches"
+  ],
+  "confusion_points": [
+    "5.5x2.1mm and 5.5x2.5mm look nearly identical but 2.1mm plugs are loose in 2.5mm jacks",
+    "Center positive vs center negative - ALWAYS check polarity before connecting, wrong polarity can destroy devices",
+    "Voltage is not standardized - a 12V device on a 19V adapter will likely be damaged",
+    "Same size connector does NOT mean compatible - check voltage, current, AND polarity",
+    "Barrel jacks have no keying or protection against wrong polarity/voltage",
+    "EIAJ standardized sizes exist but most manufacturers ignore them",
+    "Many universal adapters come with multiple tips but selecting wrong voltage is dangerous"
+  ],
+  "buying_guide": "ALWAYS match voltage (exact), polarity (center positive/negative), current (adapter must meet or exceed device requirement), AND physical size. When in doubt, measure your existing adapter with calipers. Universal adapters are convenient but risky - triple-check settings. Consider switching to USB-C PD for new projects.",
+  "notes": "Barrel connectors are one of the most frustrating connector types due to complete lack of standardization. Dozens of sizes exist, polarity varies by manufacturer, and voltage ranges from 3V to 48V. The only way to know compatibility is to check all specifications. Despite this chaos, they remain common because they're cheap, simple, and adequate for low-power DC applications. USB-C Power Delivery is slowly replacing them.",
+  "sources": [
+    {
+      "name": "EIAJ RC-5320A Standard",
+      "url": "https://en.wikipedia.org/wiki/EIAJ_connector",
+      "access_date": "2025-01-15"
+    },
+    {
+      "name": "CUI Devices DC Power Connector Guide",
+      "url": "https://www.cuidevices.com/dc-power-connectors",
+      "access_date": "2025-01-15"
+    }
+  ],
+  "last_updated": "2025-01-21"
+}

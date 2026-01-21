@@ -1,0 +1,125 @@
+{
+  "type": "NEMA",
+  "full_name": "NEMA AC Power Plugs and Receptacles",
+  "standard_body": "NEMA (National Electrical Manufacturers Association)",
+  "common_names": ["US plug", "North American outlet", "Edison plug", "Wall outlet"],
+  "protocols": {
+    "NEMA 1-15 (2-prong)": {
+      "version": "1-15",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "125V, 15A (1875W max)",
+      "features": ["2-prong ungrounded", "Polarized (one blade wider)", "Being phased out"],
+      "cable_requirements": "NEMA 1-15P plug",
+      "max_length": "N/A - fixed wiring"
+    },
+    "NEMA 5-15 (Standard 3-prong)": {
+      "version": "5-15",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "125V, 15A (1875W max)",
+      "features": ["3-prong grounded", "Standard US household outlet", "Most common"],
+      "cable_requirements": "NEMA 5-15P plug",
+      "max_length": "N/A - fixed wiring"
+    },
+    "NEMA 5-20 (T-slot 20A)": {
+      "version": "5-20",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "125V, 20A (2500W max)",
+      "features": ["3-prong grounded", "T-shaped neutral slot", "Accepts 5-15 and 5-20 plugs"],
+      "cable_requirements": "NEMA 5-20P plug (or 5-15P)",
+      "max_length": "N/A - fixed wiring"
+    },
+    "NEMA 6-15 (240V 15A)": {
+      "version": "6-15",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "250V, 15A (3750W max)",
+      "features": ["3-prong grounded", "240V single phase", "Horizontal blades"],
+      "cable_requirements": "NEMA 6-15P plug",
+      "max_length": "N/A - fixed wiring"
+    },
+    "NEMA 6-20 (240V 20A)": {
+      "version": "6-20",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "250V, 20A (5000W max)",
+      "features": ["3-prong grounded", "240V single phase", "Common for window AC, some EVs"],
+      "cable_requirements": "NEMA 6-20P plug",
+      "max_length": "N/A - fixed wiring"
+    },
+    "NEMA 14-30 (Dryer)": {
+      "version": "14-30",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "125/250V, 30A (7500W max)",
+      "features": ["4-prong grounded", "240V split phase", "Electric dryers, some EV chargers"],
+      "cable_requirements": "NEMA 14-30P plug",
+      "max_length": "N/A - fixed wiring"
+    },
+    "NEMA 14-50 (Range/EV)": {
+      "version": "14-50",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "125/250V, 50A (12500W max)",
+      "features": ["4-prong grounded", "240V split phase", "Electric ranges, RVs, Level 2 EV charging"],
+      "cable_requirements": "NEMA 14-50P plug",
+      "max_length": "N/A - fixed wiring"
+    }
+  },
+  "connector": {
+    "pins": 3,
+    "width": 32.0,
+    "height": 22.0,
+    "depth": 20.0,
+    "reversible": false,
+    "shape": "rectangular with parallel/perpendicular blades",
+    "unit": "mm"
+  },
+  "electrical": {
+    "voltage_max": 250,
+    "current_max": 50,
+    "power_max": 12500
+  },
+  "compatibility": {
+    "backwards": [],
+    "forwards": [],
+    "adapters_to": ["IEC 60320 (via power cord)", "Other regional plugs (travel adapters)"],
+    "adapters_from": ["Travel adapters from other countries (check voltage!)"]
+  },
+  "common_devices": [
+    "All US household electronics",
+    "Computers and monitors",
+    "Kitchen appliances",
+    "Electric dryers (14-30)",
+    "Electric ranges (14-50)",
+    "EV chargers (6-20, 14-30, 14-50)",
+    "Window AC units (6-15, 6-20)",
+    "Workshop equipment"
+  ],
+  "confusion_points": [
+    "5-15 and 5-20 receptacles look similar but 5-20 has a T-shaped neutral slot",
+    "5-15 plugs fit into 5-20 outlets, but 5-20 plugs don't fit 5-15 outlets",
+    "NEMA 10-30 (old 3-prong dryer) lacks ground - dangerous and being phased out",
+    "NEMA 14-30 and 14-50 are NOT interchangeable despite similar appearance",
+    "US 120V devices will be damaged by 240V - travel adapters don't convert voltage",
+    "First number indicates voltage/phase, second number indicates amperage",
+    "Locking versions (L5-15, L6-20, etc.) twist-lock and aren't interchangeable with standard"
+  ],
+  "buying_guide": "For standard household use, NEMA 5-15 is universal. For high-power appliances, verify the outlet type before purchasing - dryers use 14-30, ranges use 14-50. For EV charging, 14-50 is most versatile. Never use adapters to fit a higher-amperage plug into a lower-amperage outlet. Have an electrician install dedicated circuits for 240V or high-amperage needs.",
+  "notes": "NEMA connectors are the North American standard, used in the US, Canada, Mexico, and some other countries. The system uses different physical configurations to prevent connecting devices to incompatible voltage/amperage circuits. The 14-50 outlet has become popular for EV charging since it's commonly available for RVs and electric ranges.",
+  "sources": [
+    {
+      "name": "NEMA WD 6 Standard",
+      "url": "https://www.nema.org/Standards/view/Wiring-Devices-Dimensional-Specifications",
+      "access_date": "2025-01-15"
+    },
+    {
+      "name": "NFPA 70 National Electrical Code",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-70-standard-development/70",
+      "access_date": "2025-01-15"
+    }
+  ],
+  "last_updated": "2025-01-21"
+}

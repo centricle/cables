@@ -1,0 +1,118 @@
+{
+  "type": "IEC 60320",
+  "full_name": "IEC 60320 Appliance Couplers",
+  "standard_body": "IEC (International Electrotechnical Commission)",
+  "common_names": ["IEC connector", "Computer power cable", "Kettle lead", "C13/C14"],
+  "protocols": {
+    "C1/C2 (Shaver)": {
+      "version": "C1/C2",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "250V, 0.2A (50W max)",
+      "features": ["2-pin", "No ground", "Shaver outlets"],
+      "cable_requirements": "C1 plug to C2 inlet",
+      "max_length": "2m typical"
+    },
+    "C5/C6 (Cloverleaf)": {
+      "version": "C5/C6",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "250V, 2.5A (625W max)",
+      "features": ["3-pin grounded", "Cloverleaf/Mickey Mouse shape", "Laptop power bricks"],
+      "cable_requirements": "C5 plug to C6 inlet",
+      "max_length": "2m typical"
+    },
+    "C7/C8 (Figure-8)": {
+      "version": "C7/C8",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "250V, 2.5A (625W max)",
+      "features": ["2-pin", "No ground", "Figure-8 shape", "Small electronics"],
+      "cable_requirements": "C7 plug to C8 inlet",
+      "max_length": "2m typical"
+    },
+    "C13/C14 (Standard)": {
+      "version": "C13/C14",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "250V, 10A (2500W max)",
+      "features": ["3-pin grounded", "Most common computer/monitor connector", "Trapezoidal shape"],
+      "cable_requirements": "C13 plug to C14 inlet",
+      "max_length": "5m typical"
+    },
+    "C15/C16 (High Temp)": {
+      "version": "C15/C16",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "250V, 10A (2500W max)",
+      "features": ["3-pin grounded", "120°C rated", "Notch prevents C13 insertion", "Kettles, hot appliances"],
+      "cable_requirements": "C15 plug to C16 inlet",
+      "max_length": "2m typical"
+    },
+    "C19/C20 (High Power)": {
+      "version": "C19/C20",
+      "data_rate": "AC Power",
+      "data_rate_mbps": 0,
+      "power_delivery": "250V, 16A (4000W max)",
+      "features": ["3-pin grounded", "Rectangular shape", "Servers, PDUs, high-power equipment"],
+      "cable_requirements": "C19 plug to C20 inlet",
+      "max_length": "5m typical"
+    }
+  },
+  "connector": {
+    "pins": 3,
+    "width": 30.0,
+    "height": 22.0,
+    "depth": 30.0,
+    "reversible": false,
+    "shape": "trapezoidal (C13/C14)",
+    "unit": "mm"
+  },
+  "electrical": {
+    "voltage_max": 250,
+    "current_max": 16,
+    "power_max": 4000
+  },
+  "compatibility": {
+    "backwards": [],
+    "forwards": [],
+    "adapters_to": ["Regional wall plugs (country-specific)"],
+    "adapters_from": ["NEMA 5-15 (US)", "BS 1363 (UK)", "CEE 7 (EU)", "AS 3112 (AU)"]
+  },
+  "common_devices": [
+    "Desktop computers",
+    "Monitors",
+    "Servers",
+    "Network equipment",
+    "Printers",
+    "Projectors",
+    "Power supplies",
+    "UPS units",
+    "Audio/video equipment",
+    "Electric kettles (C15/C16)"
+  ],
+  "confusion_points": [
+    "C13 fits into C14 inlets, C14 is the plug on the device - confusing naming",
+    "C13 and C15 look similar but C15 has a notch and is rated for higher temperatures",
+    "C15 plugs fit C14 inlets, but C13 plugs do NOT fit C16 inlets (safety feature)",
+    "C19/C20 are for high-power equipment - using C13/C14 cables can cause overheating",
+    "Odd numbers are cable-side connectors, even numbers are appliance inlets",
+    "Voltage rating is 250V but actual voltage depends on your country's mains (120V US, 230V EU)",
+    "Cable amperage rating must meet or exceed device requirements"
+  ],
+  "buying_guide": "For computers and monitors, standard C13-to-wall-plug cables work. Match your wall plug type to your country. For servers and high-power equipment, verify you need C19/C20. Check amperage ratings - don't use thin cables on high-draw equipment. For kettles and hot appliances, use C15 cables rated for high temperature.",
+  "notes": "IEC 60320 connectors standardized appliance power connections worldwide. The ingenious aspect is separating the appliance connector (universal) from the wall plug (country-specific), so manufacturers can ship one product globally with different power cables. C13/C14 dominates computing, while C19/C20 handles data center and high-power needs.",
+  "sources": [
+    {
+      "name": "IEC 60320 Standard",
+      "url": "https://webstore.iec.ch/publication/1454",
+      "access_date": "2025-01-15"
+    },
+    {
+      "name": "Interpower IEC 60320 Guide",
+      "url": "https://www.interpower.com/ic/cords/iec-60320.html",
+      "access_date": "2025-01-15"
+    }
+  ],
+  "last_updated": "2025-01-21"
+}
