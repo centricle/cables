@@ -82,16 +82,36 @@ export function loadCableData(category: string, type: string): CableSpec | null 
   }
 }
 
+// Custom sort orders for categories where alphabetical doesn't make sense
+const CATEGORY_SORT_ORDER: Record<string, string[]> = {
+  usb: ['USB-C', 'USB-A', 'USB-B', 'Micro-USB', 'Mini-USB'],
+};
+
 export function loadCategoryData(category: string): CableSpec[] {
   try {
     const categoryDir = path.join(DATA_DIR, category);
     const files = fs.readdirSync(categoryDir).filter(file => file.endsWith('.json'));
 
-    return files.map(file => {
+    const cables = files.map(file => {
       const filePath = path.join(categoryDir, file);
       const jsonData = fs.readFileSync(filePath, 'utf-8');
       return JSON.parse(jsonData);
-    }).sort((a, b) => a.type.localeCompare(b.type));
+    });
+
+    const customOrder = CATEGORY_SORT_ORDER[category];
+    if (customOrder) {
+      return cables.sort((a, b) => {
+        const aIndex = customOrder.indexOf(a.type);
+        const bIndex = customOrder.indexOf(b.type);
+        // Items not in custom order go to the end, sorted alphabetically
+        if (aIndex === -1 && bIndex === -1) return a.type.localeCompare(b.type);
+        if (aIndex === -1) return 1;
+        if (bIndex === -1) return -1;
+        return aIndex - bIndex;
+      });
+    }
+
+    return cables.sort((a, b) => a.type.localeCompare(b.type));
   } catch (error) {
     console.error(`Error loading category data for ${category}:`, error);
     return [];
