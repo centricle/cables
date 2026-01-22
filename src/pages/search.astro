@@ -293,7 +293,10 @@ const description = 'Search the comprehensive cable and connector database by ty
 
             ${confusionWarning}
 
-            <p class="text-sm line-clamp-2 mb-0">${highlightSearchTerm(cable.notes, searchTerm)}</p>
+            <div class="flex items-center gap-1 text-sm">
+              <span class="group-hover:underline">Learn more</span>
+              <span class="transition-transform group-hover:translate-x-0.5">→</span>
+            </div>
           </a>
         </div>
       `;
