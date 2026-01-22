@@ -1,0 +1,209 @@
+---
+/**
+ * ConnectorPicker - Visual USB connector identification tool
+ * Users click on a connector silhouette to see what it is and learn more.
+ */
+
+interface ConnectorInfo {
+  id: string;
+  name: string;
+  fullName: string;
+  description: string;
+  commonDevices: string[];
+  limitations: string[];
+  detailUrl: string;
+}
+
+const connectors: ConnectorInfo[] = [
+  {
+    id: 'usb-c',
+    name: 'USB-C',
+    fullName: 'USB Type-C',
+    description: 'The modern universal connector. Small, reversible, and capable of high speeds and power delivery. Found on most new devices.',
+    commonDevices: ['Modern smartphones (Android)', 'MacBooks & newer laptops', 'Nintendo Switch', 'Tablets', 'External SSDs'],
+    limitations: ['Capabilities vary wildly by cable', 'Same connector can be USB 2.0 or USB4', 'Not all cables support video or fast charging'],
+    detailUrl: '/usb/usb-c'
+  },
+  {
+    id: 'usb-a',
+    name: 'USB-A',
+    fullName: 'USB Standard-A',
+    description: 'The classic rectangular USB connector. Non-reversible (there\'s always a "right way"). Still ubiquitous on computers and chargers.',
+    commonDevices: ['Desktop computers', 'Laptops (host ports)', 'Wall chargers', 'USB hubs', 'Flash drives'],
+    limitations: ['Not reversible', 'Max speed is 10 Gbps (USB 3.2 Gen 2)', 'Being phased out in favor of USB-C'],
+    detailUrl: '/usb/usb-a'
+  },
+  {
+    id: 'usb-b',
+    name: 'USB-B',
+    fullName: 'USB Standard-B',
+    description: 'The square-ish connector with beveled top corners. Often called "printer USB" but used on many peripherals.',
+    commonDevices: ['Printers', 'Scanners', 'Audio interfaces', 'MIDI controllers', 'Older external drives'],
+    limitations: ['Large and bulky', 'USB 3.0 variant looks different', 'Being replaced by USB-C'],
+    detailUrl: '/usb/usb-b'
+  },
+  {
+    id: 'micro-usb',
+    name: 'Micro USB',
+    fullName: 'USB Micro-B',
+    description: 'The small, flat, trapezoidal connector. Was standard on Android phones before USB-C. Still common on budget devices.',
+    commonDevices: ['Older Android phones', 'Kindle e-readers', 'Bluetooth speakers', 'PS4 controllers', 'Portable chargers'],
+    limitations: ['Not reversible', 'Fragile connector', 'Max USB 2.0 speed (480 Mbps) for standard version', 'Some cables are charge-only'],
+    detailUrl: '/usb/micro-usb'
+  },
+  {
+    id: 'mini-usb',
+    name: 'Mini USB',
+    fullName: 'USB Mini-B',
+    description: 'The older, taller small connector. Largely obsolete but still found on some older devices. Thicker than Micro USB.',
+    commonDevices: ['PS3 controllers', 'Older cameras', 'TI calculators', 'Old GPS units', 'Older GoPros'],
+    limitations: ['Deprecated since 2007', 'No USB 3.0 variant exists', 'Less durable than Micro USB', 'Cables getting hard to find'],
+    detailUrl: '/usb/mini-usb'
+  }
+];
+---
+
+<div class="connector-picker">
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8">
+    {connectors.map((connector) => (
+      <button
+        type="button"
+        class="connector-btn group flex flex-col items-center p-4 border-2 border-gray-200 bg-white hover:border-blue-500 hover:bg-blue-50 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        data-connector={connector.id}
+        aria-label={`Identify ${connector.name} connector`}
+      >
+        <div class="connector-svg w-20 h-20 mb-3 flex items-center justify-center">
+          {connector.id === 'usb-c' && (
+            <svg viewBox="0 0 80 40" class="w-full h-auto" aria-hidden="true">
+              <rect x="5" y="10" width="70" height="20" rx="10" ry="10" fill="none" stroke="currentColor" stroke-width="3" class="text-gray-600 group-hover:text-blue-600"/>
+              <rect x="15" y="16" width="50" height="8" rx="2" fill="currentColor" class="text-gray-400 group-hover:text-blue-400"/>
+            </svg>
+          )}
+          {connector.id === 'usb-a' && (
+            <svg viewBox="0 0 80 50" class="w-full h-auto" aria-hidden="true">
+              <rect x="5" y="10" width="70" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="3" class="text-gray-600 group-hover:text-blue-600"/>
+              <rect x="12" y="17" width="56" height="16" fill="currentColor" class="text-gray-400 group-hover:text-blue-400"/>
+            </svg>
+          )}
+          {connector.id === 'usb-b' && (
+            <svg viewBox="0 0 70 70" class="w-full h-auto" aria-hidden="true">
+              <path d="M10 15 L20 5 L50 5 L60 15 L60 65 L10 65 Z" fill="none" stroke="currentColor" stroke-width="3" class="text-gray-600 group-hover:text-blue-600"/>
+              <rect x="18" y="25" width="34" height="30" fill="currentColor" class="text-gray-400 group-hover:text-blue-400"/>
+            </svg>
+          )}
+          {connector.id === 'micro-usb' && (
+            <svg viewBox="0 0 80 30" class="w-full h-auto" aria-hidden="true">
+              <path d="M10 5 L70 5 L65 25 L15 25 Z" fill="none" stroke="currentColor" stroke-width="3" class="text-gray-600 group-hover:text-blue-600"/>
+              <rect x="20" y="10" width="40" height="10" fill="currentColor" class="text-gray-400 group-hover:text-blue-400"/>
+            </svg>
+          )}
+          {connector.id === 'mini-usb' && (
+            <svg viewBox="0 0 70 45" class="w-full h-auto" aria-hidden="true">
+              <path d="M10 8 L60 8 L55 37 L15 37 Z" fill="none" stroke="currentColor" stroke-width="3" class="text-gray-600 group-hover:text-blue-600"/>
+              <rect x="18" y="14" width="34" height="17" fill="currentColor" class="text-gray-400 group-hover:text-blue-400"/>
+            </svg>
+          )}
+        </div>
+        <span class="text-sm font-medium text-gray-700 group-hover:text-blue-700">{connector.name}</span>
+      </button>
+    ))}
+  </div>
+
+  <div id="connector-info" class="hidden">
+    {connectors.map((connector) => (
+      <div class="connector-detail hidden" data-detail={connector.id}>
+        <div class="bg-white border border-gray-200 p-6">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900">{connector.name}</h3>
+              <p class="text-gray-600">{connector.fullName}</p>
+            </div>
+            <a
+              href={connector.detailUrl}
+              class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors whitespace-nowrap"
+            >
+              Full Specs
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          <p class="text-gray-700 mb-6">{connector.description}</p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">Common Devices</h4>
+              <ul class="space-y-1">
+                {connector.commonDevices.map((device) => (
+                  <li class="flex items-start gap-2 text-gray-600">
+                    <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    {device}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">Watch Out For</h4>
+              <ul class="space-y-1">
+                {connector.limitations.map((limitation) => (
+                  <li class="flex items-start gap-2 text-gray-600">
+                    <svg class="w-5 h-5 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    {limitation}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p id="picker-prompt" class="text-center text-gray-500">
+    Click a connector above to learn more about it
+  </p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.connector-btn');
+    const infoContainer = document.getElementById('connector-info');
+    const prompt = document.getElementById('picker-prompt');
+    const details = document.querySelectorAll('.connector-detail');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const connectorId = btn.getAttribute('data-connector');
+
+        // Update button states
+        buttons.forEach((b) => {
+          b.classList.remove('border-blue-500', 'bg-blue-50');
+          b.classList.add('border-gray-200', 'bg-white');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.remove('border-gray-200', 'bg-white');
+        btn.classList.add('border-blue-500', 'bg-blue-50');
+        btn.setAttribute('aria-pressed', 'true');
+
+        // Show info container, hide prompt
+        if (infoContainer) infoContainer.classList.remove('hidden');
+        if (prompt) prompt.classList.add('hidden');
+
+        // Show selected detail, hide others
+        details.forEach((detail) => {
+          if (detail.getAttribute('data-detail') === connectorId) {
+            detail.classList.remove('hidden');
+          } else {
+            detail.classList.add('hidden');
+          }
+        });
+      });
+    });
+  });
+</script>
