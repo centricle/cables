@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CableCard from '../components/CableCard.astro';
+import IdentifyCTA from '../components/IdentifyCTA.astro';
 import { getAllCategories } from '../utils/cableData';
 
 const categories = getAllCategories();
@@ -43,6 +44,8 @@ const categories = getAllCategories();
       </div>
     </div>
   </div>
+
+  <IdentifyCTA />
 
   <!-- Main Content -->
   <div class="max-w-5xl mx-auto px-4 pt-12 pb-16">
