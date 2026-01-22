@@ -153,6 +153,9 @@ export function getMaxDataRate(cable: CableSpec): number {
   return Math.max(...rates, 0);
 }
 
+// Re-export from formatters for convenience (server-side callers)
+export { formatDataRate } from './formatters';
+
 export function getMaxPower(cable: CableSpec): number | undefined {
   return cable.electrical.power_max;
 }

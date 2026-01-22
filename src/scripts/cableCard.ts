@@ -1,3 +1,7 @@
+import { formatDataRate, isLegacy } from '../utils/formatters';
+
+export { formatDataRate };
+
 export interface ClientCable {
   type: string;
   full_name: string;
@@ -14,13 +18,6 @@ export interface ClientCable {
   notes: string;
 }
 
-export function formatDataRate(mbps: number): string {
-  if (mbps >= 1000) {
-    return `${mbps / 1000} Gbps`;
-  }
-  return `${mbps} Mbps`;
-}
-
 function escapeHtml(text: string): string {
   const div = document.createElement('div');
   div.textContent = text;
@@ -32,20 +29,6 @@ function highlightText(text: string, term?: string): string {
   const escaped = escapeHtml(text);
   const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
   return escaped.replace(regex, '<mark class="bg-warning/30 text-foreground rounded px-0.5">$1</mark>');
-}
-
-function isLegacy(cable: ClientCable): boolean {
-  const notesLower = cable.notes?.toLowerCase() || '';
-  return (
-    notesLower.includes('obsolete') ||
-    notesLower.includes('legacy') ||
-    notesLower.includes('phased out') ||
-    cable.confusion_points.some(
-      (p) =>
-        p.toLowerCase().includes('obsolete') ||
-        p.toLowerCase().includes('deprecated')
-    )
-  );
 }
 
 export interface CreateCardOptions {

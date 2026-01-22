@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getAllCategories, type CableSpec, getMaxDataRate, getMaxPower } from '../../utils/cableData';
+import { getAllCategories, type CableSpec, getMaxDataRate, getMaxPower, formatDataRate } from '../../utils/cableData';
 import { filterTrustedSources } from '../../utils/trustedSources';
 
 export interface Props {
@@ -39,14 +39,6 @@ const { category } = Astro.params as { category: string; cable: string };
 
 // Filter sources to only trusted domains
 const trustedSources = cable.sources ? filterTrustedSources(cable.sources) : [];
-
-// Format data rate for display
-function formatDataRate(mbps: number): string {
-  if (mbps >= 1000) {
-    return `${mbps / 1000} Gbps`;
-  }
-  return `${mbps} Mbps`;
-}
 
 const maxRate = getMaxDataRate(cable);
 const maxPower = getMaxPower(cable);

@@ -1,6 +1,7 @@
 ---
 import type { CableSpec } from '../utils/cableData';
-import { getMaxDataRate, getMaxPower } from '../utils/cableData';
+import { getMaxDataRate, getMaxPower, formatDataRate } from '../utils/cableData';
+import { isLegacy } from '../utils/formatters';
 
 export interface Props {
   cable: CableSpec;
@@ -9,26 +10,9 @@ export interface Props {
 
 const { cable, category } = Astro.props;
 
-// Get primary protocol info for display
-const primaryProtocol = Object.keys(cable.protocols)[0];
-const primaryProtoInfo = cable.protocols[primaryProtocol];
-
-// Format data rate for display
 const maxRate = getMaxDataRate(cable);
-function formatDataRate(mbps: number): string {
-  if (mbps >= 1000) {
-    return `${mbps / 1000} Gbps`;
-  }
-  return `${mbps} Mbps`;
-}
-
 const maxPower = getMaxPower(cable);
-
-// Determine if this is a legacy connector (based on confusion points or notes)
-const isLegacy = cable.notes?.toLowerCase().includes('obsolete') ||
-                 cable.notes?.toLowerCase().includes('legacy') ||
-                 cable.notes?.toLowerCase().includes('phased out') ||
-                 cable.confusion_points.some(p => p.toLowerCase().includes('obsolete') || p.toLowerCase().includes('deprecated'));
+const legacy = isLegacy(cable);
 ---
 
 <div class="group relative card-interactive">
@@ -38,7 +22,7 @@ const isLegacy = cable.notes?.toLowerCase().includes('obsolete') ||
       {cable.connector.reversible && (
         <span class="badge badge-reversible">Reversible</span>
       )}
-      {isLegacy && (
+      {legacy && (
         <span class="badge badge-muted">Legacy</span>
       )}
     </div>
