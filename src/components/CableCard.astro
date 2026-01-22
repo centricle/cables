@@ -35,13 +35,11 @@ const isLegacy = cable.notes?.toLowerCase().includes('obsolete') ||
   <a href={`/${category}/${cable.type.toLowerCase().replace(/[^a-z0-9]/g, '-')}`} class="block p-6" aria-label={`View detailed specifications for ${cable.type}`}>
     <!-- Badges -->
     <div class="absolute top-4 right-4 flex gap-2">
-      {isLegacy && (
-        <span class="badge badge-muted">Legacy</span>
-      )}
-    </div>
-    <div class="absolute top-4 left-4 flex gap-2">
       {cable.connector.reversible && (
         <span class="badge badge-reversible">Reversible</span>
+      )}
+      {isLegacy && (
+        <span class="badge badge-muted">Legacy</span>
       )}
     </div>
 
