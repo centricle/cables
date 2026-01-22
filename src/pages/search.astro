@@ -155,7 +155,7 @@ const description = 'Search the comprehensive cable and connector database by ty
                   {popularSearches.map(item => (
                     <a
                       href={`/search?q=${encodeURIComponent(item.term)}`}
-                      class="group rounded-xl border border-border bg-card px-4 py-3 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+                      class="group card-interactive px-4 py-3"
                     >
                       <span class="font-medium text-foreground">{item.term}</span>
                       <span class="block text-sm">{item.count} result{item.count !== 1 ? 's' : ''}</span>
@@ -169,19 +169,19 @@ const description = 'Search the comprehensive cable and connector database by ty
           <div class="mt-8">
             <h3 class="text-lg font-semibold text-foreground mb-3">Browse by Category</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-3xl mx-auto">
-              <a href="/usb" class="group rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+              <a href="/usb" class="group card-interactive p-4">
                 <h4 class="font-medium text-foreground">USB</h4>
                 <p class="mb-0 text-sm">USB-C, USB-A, Micro</p>
               </a>
-              <a href="/video" class="group rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+              <a href="/video" class="group card-interactive p-4">
                 <h4 class="font-medium text-foreground">Video</h4>
                 <p class="mb-0 text-sm">HDMI, DisplayPort</p>
               </a>
-              <a href="/audio" class="group rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+              <a href="/audio" class="group card-interactive p-4">
                 <h4 class="font-medium text-foreground">Audio</h4>
                 <p class="mb-0 text-sm">3.5mm, XLR, RCA</p>
               </a>
-              <a href="/power" class="group rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+              <a href="/power" class="group card-interactive p-4">
                 <h4 class="font-medium text-foreground">Power</h4>
                 <p class="mb-0 text-sm">Barrel, IEC, NEMA</p>
               </a>
@@ -250,13 +250,13 @@ const description = 'Search the comprehensive cable and connector database by ty
 
     function createCableCard(cable, searchTerm) {
       const confusionWarning = cable.confusion_points.length > 0
-        ? `<div class="mb-4 p-3 bg-warning/10 border border-warning/20 rounded-lg">
+        ? `<div class="mb-4 alert-warning">
              <p class="text-warning-foreground text-sm mb-0">${cable.confusion_points[0]}</p>
            </div>`
         : '';
 
       return `
-        <div class="group relative bg-card border border-border rounded-2xl transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+        <div class="group relative card-interactive">
           <a href="/${cable.categorySlug}/${cable.type.toLowerCase().replace(/[^a-z0-9]/g, '-')}" class="block p-6">
             <div class="flex justify-between items-start mb-4">
               <div>

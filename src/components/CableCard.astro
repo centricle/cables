@@ -31,7 +31,7 @@ const isLegacy = cable.notes?.toLowerCase().includes('obsolete') ||
                  cable.confusion_points.some(p => p.toLowerCase().includes('obsolete') || p.toLowerCase().includes('deprecated'));
 ---
 
-<div class="group relative bg-card border border-border rounded-2xl transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+<div class="group relative card-interactive">
   <a href={`/${category}/${cable.type.toLowerCase().replace(/[^a-z0-9]/g, '-')}`} class="block p-6" aria-label={`View detailed specifications for ${cable.type}`}>
     <!-- Badges -->
     <div class="absolute top-4 right-4 flex gap-2">
@@ -92,7 +92,7 @@ const isLegacy = cable.notes?.toLowerCase().includes('obsolete') ||
 
     <!-- Warning -->
     {cable.confusion_points.length > 0 && (
-      <div class="mb-4 p-3 bg-warning/10 border border-warning/20 rounded-lg">
+      <div class="mb-4 alert-warning">
         <p class="text-warning-foreground text-sm">
           {cable.confusion_points[0]}
         </p>

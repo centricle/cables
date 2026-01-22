@@ -100,21 +100,21 @@ const description = `Complete technical specifications for ${cable.type} includi
             <div class="rounded-2xl border border-border bg-card p-6">
               <h2 class="text-xl font-semibold text-foreground mb-4">Quick Specifications</h2>
               <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="text-center p-4 rounded-xl bg-secondary/50 border border-border">
+                <div class="stat-box">
                   <p class="mb-1 text-sm">Max Speed</p>
                   <p class="mb-0 text-2xl font-bold text-foreground">{formatDataRate(maxRate)}</p>
                 </div>
                 {maxPower && (
-                  <div class="text-center p-4 rounded-xl bg-secondary/50 border border-border">
+                  <div class="stat-box">
                     <p class="mb-1 text-sm">Max Power</p>
                     <p class="mb-0 text-2xl font-bold text-foreground">{maxPower}W</p>
                   </div>
                 )}
-                <div class="text-center p-4 rounded-xl bg-secondary/50 border border-border">
+                <div class="stat-box">
                   <p class="mb-1 text-sm">Pins</p>
                   <p class="mb-0 text-2xl font-bold text-foreground">{cable.connector.pins}</p>
                 </div>
-                <div class="text-center p-4 rounded-xl bg-secondary/50 border border-border">
+                <div class="stat-box">
                   <p class="mb-1 text-sm">Reversible</p>
                   <p class="mb-0 text-2xl font-bold text-foreground">{cable.connector.reversible ? 'Yes' : 'No'}</p>
                 </div>

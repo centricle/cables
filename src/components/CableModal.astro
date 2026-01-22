@@ -69,11 +69,11 @@ const { cables } = Astro.props;
 
         <!-- Speed & Power Info -->
         <section class="grid gap-4 sm:grid-cols-2">
-          <div class="rounded-xl bg-secondary/50 p-4">
+          <div class="info-box">
             <h4 class="text-sm font-medium text-foreground mb-1">Data Speed</h4>
             <p class="text-sm leading-relaxed">{cable.speedInfo}</p>
           </div>
-          <div class="rounded-xl bg-secondary/50 p-4">
+          <div class="info-box">
             <h4 class="text-sm font-medium text-foreground mb-1">Power Delivery</h4>
             <p class="text-sm leading-relaxed">{cable.powerInfo}</p>
           </div>
@@ -116,7 +116,7 @@ const { cables } = Astro.props;
 
         <!-- Obsolete Notice -->
         {cable.obsolete && (
-          <section class="flex items-start gap-3 rounded-xl border border-border bg-muted/50 p-4">
+          <section class="flex items-start gap-3 rounded-xl border border-border bg-secondary/50 p-4">
             <span class="mt-0.5">⏰</span>
             <div>
               <h4 class="text-sm font-medium text-foreground">Legacy Connector</h4>
