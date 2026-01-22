@@ -203,10 +203,11 @@ export function getVideoCapabilities(cable: CableSpec): string[] {
     }
     // Check features for video-related entries
     for (const feature of protocol.features) {
-      if (feature.toLowerCase().includes('displayport') ||
-          feature.toLowerCase().includes('hdmi') ||
-          feature.toLowerCase().includes('4k') ||
-          feature.toLowerCase().includes('8k')) {
+      const lower = feature.toLowerCase();
+      if (lower.includes('displayport') ||
+          lower.includes('hdmi') ||
+          // Match video resolutions (4K/8K) but not audio sample rates (48kHz)
+          /\b[48]k[@\s]|[48]k\b/.test(lower)) {
         capabilities.add(feature);
       }
     }

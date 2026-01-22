@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getAllCategories, getMaxDataRate, getMaxPower, getNormalizedPowerWatts, getVideoCapabilities, hasVideoSupport } from '../utils/cableData';
+import { getAllCategories, getMaxDataRate, getNormalizedPowerWatts, getVideoCapabilities } from '../utils/cableData';
 
 const allCategories = getAllCategories();
 
@@ -18,7 +18,6 @@ const clientCables = allCategories.flatMap(cat =>
       pins: cable.connector.pins,
       reversible: cable.connector.reversible,
       video_capabilities: getVideoCapabilities(cable),
-      has_video: hasVideoSupport(cable),
       confusion_points: cable.confusion_points,
       notes: cable.notes
     };
@@ -254,16 +253,12 @@ const description = 'Find cables by specifications: data rate, power delivery, v
            </div>`
         : '';
 
-      const videoTag = cable.has_video
-        ? '<span class="badge badge-muted ml-2">Video</span>'
-        : '';
-
       return `
         <div class="group relative card-interactive">
           <a href="/${cable.categorySlug}/${cable.type.toLowerCase().replace(/[^a-z0-9]/g, '-')}" class="block p-6">
             <div class="flex justify-between items-start mb-4">
               <div>
-                <h3 class="text-xl font-semibold text-foreground mb-1">${cable.type}${videoTag}</h3>
+                <h3 class="text-xl font-semibold text-foreground mb-1">${cable.type}</h3>
                 <p class="text-sm mb-0">${cable.full_name}</p>
               </div>
               <div class="text-right">
