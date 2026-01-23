@@ -1,0 +1,165 @@
+---
+/**
+ * ConnectorIcon - Reusable SVG connector silhouettes
+ *
+ * Accepts a connector slug and renders the appropriate SVG icon.
+ * Handles normalization of audio slugs (3-5mm -> audio-35mm, 6-35mm -> audio-635mm).
+ */
+
+interface Props {
+  connector: string;
+  class?: string;
+}
+
+const { connector, class: className } = Astro.props;
+
+// Normalize connector ID for audio slugs
+function normalizeConnectorId(slug: string): string {
+  // Handle audio slug normalization: "3-5mm" -> "audio-35mm", "6-35mm" -> "audio-635mm"
+  if (slug === '3-5mm') return 'audio-35mm';
+  if (slug === '6-35mm') return 'audio-635mm';
+  return slug;
+}
+
+const id = normalizeConnectorId(connector);
+---
+
+<div class:list={['connector-icon', className]}>
+  {/* USB Connectors */}
+  {id === 'usb-c' && (
+    <svg viewBox="0 0 80 40" class="w-full h-auto" aria-hidden="true">
+      <rect x="5" y="10" width="70" height="20" rx="10" ry="10" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="15" y="16" width="50" height="8" rx="2" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'usb-a' && (
+    <svg viewBox="0 0 80 50" class="w-full h-auto" aria-hidden="true">
+      <rect x="5" y="10" width="70" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="12" y="17" width="56" height="16" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'usb-b' && (
+    <svg viewBox="0 0 70 70" class="w-full h-auto" aria-hidden="true">
+      <path d="M10 15 L20 5 L50 5 L60 15 L60 65 L10 65 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="18" y="25" width="34" height="30" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'micro-usb' && (
+    <svg viewBox="0 0 80 30" class="w-full h-auto" aria-hidden="true">
+      <path d="M10 5 L70 5 L65 25 L15 25 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="20" y="10" width="40" height="10" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'mini-usb' && (
+    <svg viewBox="0 0 70 45" class="w-full h-auto" aria-hidden="true">
+      <path d="M10 8 L60 8 L55 37 L15 37 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="18" y="14" width="34" height="17" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'lightning' && (
+    <svg viewBox="0 0 80 30" class="w-full h-auto" aria-hidden="true">
+      <rect x="10" y="5" width="60" height="20" rx="4" ry="4" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="18" y="10" width="44" height="10" rx="1" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+
+  {/* Video Connectors */}
+  {id === 'hdmi' && (
+    <svg viewBox="0 0 80 50" class="w-full h-auto" aria-hidden="true">
+      <path d="M10 10 L70 10 L70 35 L65 45 L15 45 L10 35 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="18" y="18" width="44" height="18" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'displayport' && (
+    <svg viewBox="0 0 80 50" class="w-full h-auto" aria-hidden="true">
+      <path d="M10 10 L70 10 L70 40 L60 50 L10 50 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="18" y="18" width="44" height="24" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'dvi' && (
+    <svg viewBox="0 0 90 50" class="w-full h-auto" aria-hidden="true">
+      <rect x="20" y="5" width="65" height="40" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="5" y="15" width="15" height="20" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="28" y="12" width="50" height="26" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'vga' && (
+    <svg viewBox="0 0 80 45" class="w-full h-auto" aria-hidden="true">
+      <path d="M5 10 Q5 5 15 5 L65 5 Q75 5 75 10 L75 35 Q75 40 65 40 L15 40 Q5 40 5 35 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="25" cy="15" r="2" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="40" cy="15" r="2" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="55" cy="15" r="2" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="25" cy="25" r="2" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="40" cy="25" r="2" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="55" cy="25" r="2" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="25" cy="35" r="2" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="40" cy="35" r="2" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="55" cy="35" r="2" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+
+  {/* Audio Connectors */}
+  {id === 'audio-35mm' && (
+    <svg viewBox="0 0 80 40" class="w-full h-auto" aria-hidden="true">
+      <path d="M10 12 L55 12 L55 28 L10 28 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M55 15 L70 15 L75 20 L70 25 L55 25" fill="none" stroke="currentColor" stroke-width="3"/>
+      <line x1="30" y1="12" x2="30" y2="28" stroke="currentColor" stroke-width="2" class="text-svg-inset"/>
+      <line x1="45" y1="12" x2="45" y2="28" stroke="currentColor" stroke-width="2" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'audio-635mm' && (
+    <svg viewBox="0 0 80 50" class="w-full h-auto" aria-hidden="true">
+      <path d="M10 10 L50 10 L50 40 L10 40 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M50 15 L65 15 L75 25 L65 35 L50 35" fill="none" stroke="currentColor" stroke-width="3"/>
+      <line x1="25" y1="10" x2="25" y2="40" stroke="currentColor" stroke-width="2" class="text-svg-inset"/>
+      <line x1="40" y1="10" x2="40" y2="40" stroke="currentColor" stroke-width="2" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'xlr' && (
+    <svg viewBox="0 0 70 70" class="w-full h-auto" aria-hidden="true">
+      <circle cx="35" cy="35" r="30" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M35 8 L38 15 L32 15 Z" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="25" cy="30" r="4" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="45" cy="30" r="4" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="35" cy="45" r="4" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'rca' && (
+    <svg viewBox="0 0 70 70" class="w-full h-auto" aria-hidden="true">
+      <circle cx="35" cy="35" r="30" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="35" cy="35" r="18" fill="none" stroke="currentColor" stroke-width="2" class="text-svg-inset"/>
+      <circle cx="35" cy="35" r="5" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'optical' && (
+    <svg viewBox="0 0 60 70" class="w-full h-auto" aria-hidden="true">
+      <path d="M10 25 Q10 5 30 5 Q50 5 50 25 L50 65 L10 65 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="18" y="35" width="24" height="22" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+
+  {/* Power Connectors */}
+  {id === 'barrel-jack' && (
+    <svg viewBox="0 0 80 40" class="w-full h-auto" aria-hidden="true">
+      <rect x="10" y="8" width="60" height="24" rx="12" ry="12" fill="none" stroke="currentColor" stroke-width="3"/>
+      <line x1="25" y1="20" x2="55" y2="20" stroke="currentColor" stroke-width="4" class="text-svg-inset"/>
+      <circle cx="40" cy="20" r="4" fill="none" stroke="currentColor" stroke-width="2" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'iec-60320' && (
+    <svg viewBox="0 0 70 60" class="w-full h-auto" aria-hidden="true">
+      <path d="M10 10 L60 10 L65 55 L5 55 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="15" y="20" width="12" height="25" rx="2" fill="currentColor" class="text-svg-inset"/>
+      <rect x="43" y="20" width="12" height="25" rx="2" fill="currentColor" class="text-svg-inset"/>
+      <rect x="29" y="35" width="12" height="10" rx="2" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+  {id === 'nema' && (
+    <svg viewBox="0 0 70 70" class="w-full h-auto" aria-hidden="true">
+      <rect x="5" y="5" width="60" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="18" y="15" width="8" height="20" rx="2" fill="currentColor" class="text-svg-inset"/>
+      <rect x="44" y="15" width="8" height="20" rx="2" fill="currentColor" class="text-svg-inset"/>
+      <circle cx="35" cy="50" r="6" fill="currentColor" class="text-svg-inset"/>
+    </svg>
+  )}
+</div>

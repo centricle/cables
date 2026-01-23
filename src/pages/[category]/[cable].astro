@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ConnectorIcon from '../../components/ConnectorIcon.astro';
 import { getAllCategories, type CableSpec, getMaxDataRate, getMaxPower, formatDataRate } from '../../utils/cableData';
 import { filterTrustedSources } from '../../utils/trustedSources';
 
@@ -59,16 +60,22 @@ const description = `Complete technical specifications for ${cable.type} includi
         <div class="lg:col-span-2">
           <div class="space-y-8">
             <!-- Header -->
-            <div>
-              <h1 class="text-4xl font-bold text-foreground mb-2">{cable.type}</h1>
-              <p class="text-xl mb-4">{cable.full_name}</p>
-              <p class="text-sm mb-4">
-                Standard: <span class="font-medium text-foreground">{cable.standard_body}</span>
-                {cable.last_updated && (
-                  <span class="ml-4">Last updated: {cable.last_updated}</span>
-                )}
-              </p>
-              <p class="text-foreground">{cable.notes}</p>
+            <div class="flex items-start gap-6">
+              <ConnectorIcon
+                connector={cable.type.toLowerCase().replace(/[^a-z0-9]/g, '-')}
+                class="w-24 shrink-0 text-foreground"
+              />
+              <div>
+                <h1 class="text-4xl font-bold text-foreground mb-2">{cable.type}</h1>
+                <p class="text-xl mb-4">{cable.full_name}</p>
+                <p class="text-sm mb-4">
+                  Standard: <span class="font-medium text-foreground">{cable.standard_body}</span>
+                  {cable.last_updated && (
+                    <span class="ml-4">Last updated: {cable.last_updated}</span>
+                  )}
+                </p>
+                <p class="text-foreground">{cable.notes}</p>
+              </div>
             </div>
 
             <!-- Quick Specs -->
