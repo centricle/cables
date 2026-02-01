@@ -7,7 +7,7 @@ export interface Props {
 }
 
 const {
-	title = "WhatCable - Cable & Connector Database",
+	title = "cables.fyi - Cable & Connector Database",
 	description = "Comprehensive database of cable and connector specifications. Demystifying USB-C, Thunderbolt, HDMI, and more."
 } = Astro.props;
 ---
@@ -27,7 +27,7 @@ const {
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={Astro.url} />
-		<meta property="og:site_name" content="WhatCable" />
+		<meta property="og:site_name" content="cables.fyi" />
 
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary" />
@@ -46,11 +46,8 @@ const {
 		<header class="sticky top-0 z-50 w-full border-b border-zinc-300 backdrop-blur-md bg-header-bg">
 			<div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-4">
 				<!-- Logo -->
-				<a href="/" class="flex items-center gap-2 font-semibold text-foreground" aria-label="WhatCable home page">
-					<div class="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-accent">
-						<span class="text-foreground font-bold text-sm">WC</span>
-					</div>
-					<span>WhatCable</span>
+				<a href="/" class="flex items-center gap-2 font-semibold text-foreground" aria-label="cables.fyi home page">
+					<span>cables.fyi</span>
 				</a>
 
 				<!-- Desktop Navigation -->
@@ -107,7 +104,8 @@ const {
 		<!-- Footer -->
 		<footer class="border-t border-border bg-secondary/30">
 			<div class="mx-auto max-w-5xl px-4 py-8">
-				<div class="flex justify-center">
+				<div class="flex justify-center items-center gap-4">
+					<a href="https://thelookup.fyi" class="text-muted-foreground hover:text-foreground transition-colors text-sm">Part of The Lookup</a>
 					<a href="https://centricle.com" class="text-amber-600/70 hover:text-amber-600 transition-colors" title="Built by ksmith" aria-label="Made by ksmith">
 						<svg class="w-6 h-6" viewBox="0 0 32 32" fill="none">
 							<path d="M 23.5 7.5 C 19 3.5, 11.5 4, 7.5 8.5 C 3.5 13, 4 20.5, 8 24.5 C 12.5 28.5, 20 28, 24 23.5" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
