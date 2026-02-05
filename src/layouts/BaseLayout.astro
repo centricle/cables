@@ -37,6 +37,15 @@ const {
 		<!-- SEO -->
 		<link rel="canonical" href={Astro.url} />
 		<meta name="robots" content="index, follow" />
+
+		<!-- Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-44SSXX07KM"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-44SSXX07KM');
+		</script>
 	</head>
 
 	<body class="bg-background text-foreground">
