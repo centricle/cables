@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About | cables.fyi" description="Why cables.fyi exists. The cable reference that should already exist.">
+  <section class="py-12 sm:py-16">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-3xl font-bold mb-8">About</h1>
+
+      <!-- Origin story -->
+      <div class="prose max-w-none mb-10">
+        <p class="text-lg mb-4">
+          Which USB cable do I need? The answer should be simple. It never is. USB-A, USB-C, Micro-B, Mini-B, Thunderbolt, Lightning — and that's just USB. Add video cables, audio cables, and power cables to the mix and you're deep in a rabbit hole of specs and compatibility charts.
+        </p>
+        <p class="text-lg">
+          I built cables.fyi because every time I needed to buy a cable, I ended up doing twenty minutes of research that should have taken twenty seconds. One place, all the specs, no opinions.
+        </p>
+      </div>
+
+      <!-- What it does -->
+      <h2 class="text-2xl font-semibold mb-4">What it does</h2>
+      <p class="text-foreground/70 mb-10">
+        cables.fyi is a reference database for cables and connectors. Look up any cable type and get the specs — pinout, bandwidth, max length, compatibility. No recommendations, no affiliate links. Just the information you need to buy the right cable.
+      </p>
+
+      <!-- Built by -->
+      <div class="pt-8 border-t border-zinc-300 text-sm text-foreground/50">
+        <p>
+          Built by <a href="https://centricle.com" class="text-primary hover:underline">Kevin Smith</a> at Centricle. No ads. No sponsored content. No affiliate links.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
