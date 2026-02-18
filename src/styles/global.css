@@ -28,6 +28,11 @@
   --radius-2xl: 1.5rem;
 }
 
+html {
+  font-size: 21px;
+  scroll-behavior: smooth;
+}
+
 @layer base {
   body {
     @apply bg-background text-foreground font-sans antialiased;
