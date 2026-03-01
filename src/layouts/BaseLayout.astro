@@ -57,8 +57,14 @@ const {
 		<header class="sticky top-0 z-50 w-full border-b border-zinc-300 backdrop-blur-md bg-header-bg">
 			<div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-4">
 				<!-- Logo -->
-				<a href="/" class="flex items-center gap-2 font-semibold text-foreground" aria-label="cables.fyi home page">
-					<span>cables.fyi</span>
+				<a href="/" class="flex items-center gap-2" aria-label="cables.fyi home page">
+					<div class="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-300 flex items-center justify-center">
+						<svg class="w-5 h-5 text-zinc-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="4" y="7" width="16" height="10" rx="5"/>
+							<rect x="8" y="10" width="8" height="4" rx="2"/>
+						</svg>
+					</div>
+					<span class="text-lg text-foreground"><span class="font-normal">cables</span><span class="font-bold">.fyi</span></span>
 				</a>
 
 				<!-- Desktop Navigation -->
