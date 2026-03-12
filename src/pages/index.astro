@@ -16,8 +16,7 @@ const categories = getAllCategories();
           Cable & Connector Database
         </h1>
         <p class="mt-6 max-w-2xl mx-auto">
-          Demystifying USB-C, Thunderbolt, HDMI, and more. Because the same connector
-          can mean wildly different capabilities.
+          Cable and connector specifications. Pinouts, data rates, power delivery, compatibility.
         </p>
         <div class="mt-8">
           <form method="GET" action="/search" class="flex justify-center" role="search" aria-label="Search cables">
@@ -89,46 +88,28 @@ const categories = getAllCategories();
       ))}
     </div>
 
-    <!-- Quick Tips Section -->
+    <!-- Key Facts Section -->
     <section class="mt-16 rounded-2xl border border-border bg-card p-8">
       <h2 class="mb-6 text-xl font-semibold text-foreground">
-        Quick Shopping Tips
+        Key Facts
       </h2>
       <div class="grid gap-6 sm:grid-cols-3">
         <div class="flex flex-col gap-2">
-          <div class="flex items-center gap-3">
-            <div class="flex shrink-0 items-center justify-center rounded-xl bg-primary/10">
-              <span class="text-lg">🔍</span>
-            </div>
-            <h3 class="font-medium text-foreground mb-0">Check Both Ends</h3>
-          </div>
+          <h3 class="font-medium text-foreground mb-0">Connector ≠ Protocol</h3>
           <p class="text-sm leading-relaxed mb-0">
-            Cables have two connectors. Make sure you know what's on both ends
-            before ordering - USB-A to USB-C is different from USB-C to USB-C.
+            A USB-C connector can carry USB 2.0 (480 Mbps), USB4 (40 Gbps), Thunderbolt 4 (40 Gbps), or DisplayPort 2.1. The physical plug does not determine the protocol.
           </p>
         </div>
         <div class="flex flex-col gap-2">
-          <div class="flex items-center gap-3">
-            <div class="flex shrink-0 items-center justify-center rounded-xl bg-primary/10">
-              <span class="text-lg">⚡</span>
-            </div>
-            <h3 class="font-medium text-foreground mb-0">Not All Cables Are Equal</h3>
-          </div>
+          <h3 class="font-medium text-foreground mb-0">Cable Ratings Vary</h3>
           <p class="text-sm leading-relaxed mb-0">
-            USB-C cables especially vary widely. A cheap cable might charge
-            slowly or not support video output. Look for speed and wattage ratings.
+            Two USB-C cables with identical connectors can differ in data rate (480 Mbps vs 40 Gbps), power delivery (60W vs 240W), and video support. Ratings are cable-specific, not connector-specific.
           </p>
         </div>
         <div class="flex flex-col gap-2">
-          <div class="flex items-center gap-3">
-            <div class="flex shrink-0 items-center justify-center rounded-xl bg-primary/10">
-              <span class="text-lg">?</span>
-            </div>
-            <h3 class="font-medium text-foreground mb-0">When in Doubt, USB-C</h3>
-          </div>
+          <h3 class="font-medium text-foreground mb-0">Asymmetric Cables Exist</h3>
           <p class="text-sm leading-relaxed mb-0">
-            If you're buying new devices, lean toward USB-C. It's the current
-            standard and will be supported for years to come.
+            Many cables have different connectors on each end (USB-A to USB-C, HDMI to DisplayPort). The combination determines which signals the cable can carry.
           </p>
         </div>
       </div>
