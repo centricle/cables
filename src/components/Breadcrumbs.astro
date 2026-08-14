@@ -1,4 +1,6 @@
 ---
+import BreadcrumbSchema from './BreadcrumbSchema.astro';
+
 export interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -11,6 +13,7 @@ interface Props {
 const { items } = Astro.props;
 ---
 
+<BreadcrumbSchema items={items} />
 <nav class="mb-6 flex" aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-2 text-sm">
     <li class="inline-flex items-center">

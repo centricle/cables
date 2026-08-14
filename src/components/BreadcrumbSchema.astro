@@ -1,0 +1,41 @@
+---
+/**
+ * Machine-readable copy of the breadcrumb trail rendered on the page.
+ * Visual markup stays with the page; this only emits the JSON-LD.
+ *
+ * "Home" is prepended automatically — pass only the trail beneath it, and
+ * omit `href` on the final crumb (the current page needs no item URL).
+ */
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const origin = Astro.site ?? new URL('/', Astro.url);
+
+// Canonicals carry a trailing slash; keep these byte-identical to them.
+const absolute = (href: string) => {
+  const url = new URL(href, origin);
+  if (!url.pathname.endsWith('/')) url.pathname += '/';
+  return url.href;
+};
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [{ label: 'Home', href: '/' }, ...items].map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    ...(item.href && { item: absolute(item.href) }),
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
