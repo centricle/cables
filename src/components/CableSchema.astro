@@ -1,0 +1,86 @@
+---
+import type { CableSpec } from '../utils/cableData';
+import { getMaxDataRate, formatDataRate } from '../utils/cableData';
+
+export interface Props {
+  cable: CableSpec;
+  category: string;
+}
+
+const { cable, category } = Astro.props;
+
+const { connector, electrical } = cable;
+const maxRate = getMaxDataRate(cable);
+
+interface PropertyValue {
+  "@type": "PropertyValue";
+  name: string;
+  value: string | number | boolean;
+  unitText?: string;
+}
+
+const prop = (
+  name: string,
+  value: string | number | boolean | undefined | null,
+  unitText?: string
+): PropertyValue[] =>
+  value === undefined || value === null || value === ''
+    ? []
+    : [{ "@type": "PropertyValue", name, value, ...(unitText && { unitText }) }];
+
+// Connector geometry and electrical limits
+const physicalProperties: PropertyValue[] = [
+  ...prop('Standard Body', cable.standard_body),
+  ...prop('Maximum Data Rate', maxRate > 0 ? formatDataRate(maxRate) : null),
+  ...prop('Pins', connector.pins),
+  ...prop('Rows', connector.rows),
+  ...prop('Pin Pitch', connector.pitch, 'millimeters'),
+  ...prop('Width', connector.width, connector.unit === 'mm' ? 'millimeters' : connector.unit),
+  ...prop('Height', connector.height, connector.unit === 'mm' ? 'millimeters' : connector.unit),
+  ...prop('Depth', connector.depth, connector.unit === 'mm' ? 'millimeters' : connector.unit),
+  ...prop('Shape', connector.shape),
+  ...prop('Reversible', connector.reversible),
+  ...prop('Maximum Voltage', electrical.voltage_max, 'volts'),
+  ...prop('Maximum Current', electrical.current_max, 'amperes'),
+  ...prop('Maximum Power', electrical.power_max, 'watts'),
+  ...prop('Impedance', electrical.impedance),
+];
+
+// One entry per supported protocol — the spec that actually varies per cable
+const protocolProperties: PropertyValue[] = Object.entries(cable.protocols).flatMap(
+  ([protocolName, spec]) => [
+    ...prop(`${protocolName} Data Rate`, spec.data_rate),
+    ...prop(`${protocolName} Power Delivery`, spec.power_delivery),
+    ...prop(`${protocolName} Maximum Length`, spec.max_length),
+  ]
+);
+
+const compatibilityProperties: PropertyValue[] = [
+  ...prop('Backwards Compatible With', cable.compatibility.backwards.join(', ')),
+  ...prop('Forwards Compatible With', cable.compatibility.forwards.join(', ')),
+  ...prop('Adapts To', cable.compatibility.adapters_to.join(', ')),
+  ...prop('Common Devices', cable.common_devices.join(', ')),
+];
+
+// full_name and common_names overlap with type on some cables
+const alternateNames = [...new Set([cable.full_name, ...cable.common_names])].filter(
+  name => name !== cable.type
+);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProductModel",
+  "name": cable.type,
+  "description": cable.notes,
+  "category": `${category} connectors`,
+  "url": Astro.url.href,
+  ...(alternateNames.length && { "alternateName": alternateNames }),
+  "additionalProperty": [
+    ...physicalProperties,
+    ...protocolProperties,
+    ...compatibilityProperties,
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
