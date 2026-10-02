@@ -2,6 +2,14 @@
   command = "npm run build"
   publish = "dist"
 
+# The netlify.app copy leaked into analytics and duplicates the site for
+# search. Host-matched, so it is evaluated before every other rule.
+[[redirects]]
+  from = "https://cables-fyi.netlify.app/*"
+  to = "https://cables.fyi/:splat"
+  status = 301
+  force = true
+
 # Hashed Astro assets are content-addressed, so they can be cached forever.
 # The Netlify adapter used to emit this rule into .netlify/v1/config.json; the
 # adapter was removed (it deployed an SSR catch-all that billed every 404 as a
